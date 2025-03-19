@@ -42,6 +42,8 @@ The simplification makes the model more manageable, requiring far less data to e
 
 ![image](https://github.com/user-attachments/assets/ceb3f764-cbaa-4cc6-851f-2708a7c9af9d)
 
+> Showing the Markov Chain for weather prediction with two states (rainy and cloudy) and transition probabilities between them
+
 **Hidden Markov Models**:
 - States are **hidden** (not directly observable)
 - We only observe **emissions** or **observations** that are probabilistically related to the hidden states
@@ -49,6 +51,8 @@ The simplification makes the model more manageable, requiring far less data to e
 - A particular observation can be emitted from multiple different hidden states
 
 ![image](https://github.com/user-attachments/assets/05718f75-0e64-4480-9fee-5e3087f77936)
+
+> Showing the time-elapsed view of HMM with hidden states and observations
 
 ### Formal Structure
 
@@ -105,6 +109,7 @@ A classic example used to explain HMMs involves a dishonest casino croupier:
 
 ![image](https://github.com/user-attachments/assets/2a3c2b5f-1a84-4a71-ba7d-f25a75ceaaae)
 
+> Showing the dice HMM with states, observations, and probabilities
 
 In this example:
 - **Hidden States**: The type of dice being used (fair or loaded)
@@ -240,6 +245,8 @@ The HMM can be denoted as $\mu = (A, B)$ with these parameters.
 ![image](https://github.com/user-attachments/assets/e22cd86e-6c5b-4cc0-82de-d4782a088fc2)
 
 ![image](https://github.com/user-attachments/assets/2a3c2b5f-1a84-4a71-ba7d-f25a75ceaaae)
+
+> Showing the dice HMM with start state, end state, and transitions between states
 
 In this diagram, $a_{01}$ and $a_{02}$ represent probabilities of starting with the loaded or fair dice, while $a_{1f}$ and $a_{2f}$ represent probabilities of ending the sequence when in each state.
 
@@ -716,6 +723,8 @@ This scenario can be modeled as an HMM where:
 ![image](https://github.com/user-attachments/assets/e22cd86e-6c5b-4cc0-82de-d4782a088fc2)
 
 ![image](https://github.com/user-attachments/assets/2a3c2b5f-1a84-4a71-ba7d-f25a75ceaaae)
+
+> Showing the dice HMM with states, observations, and transition probabilities
 
 ### Variant with Three Dice
 
