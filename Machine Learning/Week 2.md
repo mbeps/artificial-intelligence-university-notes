@@ -12,6 +12,8 @@ In supervised learning, inductive learning follows this general approach:
 
 ![image](https://github.com/user-attachments/assets/8bf2b389-dba6-4e6b-865f-7ecd1c70a65f)
 
+> Supervised learning workflow diagram showing the pipeline from training data through to prediction
+
 The main goal of inductive learning is to generalise from specific examples to create a model that can make accurate predictions on unseen data. This is essential for practical applications of machine learning.
 
 Common tasks in inductive learning include:
@@ -53,6 +55,8 @@ The key components of a decision tree include:
 Decision trees can be viewed as implementing a **disjunction of conjunctions** of constraints on feature values. In simpler terms, they represent a series of "if-then-else" rules that can be easily understood and interpreted.
 
 ![image](https://github.com/user-attachments/assets/d3403e23-4671-4dad-9332-130f5a13c2b5)
+
+> Decision tree for Iris example showing nodes, branches, and leaf nodes with their values
 
 ## 2.2 Building Decision Trees
 
@@ -256,6 +260,8 @@ The goal is to estimate values of $w_0$ and $w_1$ from training data that best f
 
 ![image](https://github.com/user-attachments/assets/1d5baa98-e742-438d-9c9a-bb7c33b84d85)
 
+> House price prediction example showing a linear relationship between floor area and price
+
 To find the best-fitting line, we need to minimise the **loss function** (also called the **cost function**). Traditionally, we use the **squared loss function** ($L_2$):
 
 $$J(h_w) = Loss(h_w) = \sum_{j=1}^{N} (y_j - h_w(x_j))^2 = \sum_{j=1}^{N} (y_j - (w_1x_j + w_0))^2$$
@@ -308,6 +314,8 @@ Where:
 - $\frac{\partial}{\partial w_i} Loss(w)$ is the partial derivative of the loss function with respect to $w_i$
 
 ![image](https://github.com/user-attachments/assets/5b17dcd5-4dcb-4b69-884f-ce1f3bbd30cd)
+
+> Visualisation of the loss function as a bowl-shaped surface and how gradient descent moves toward the minimum
 
 ### 3.3.1 Batch Gradient Descent
 
@@ -399,6 +407,122 @@ Regularisation is essential for multivariate linear regression models, especiall
 2. Features are correlated with each other
 3. The amount of training data is limited
 
+# 4. Classification
+
+## 4.1 Linear Classifiers
+
+**Linear classifiers** use linear functions to separate data into different classes. A linear function defines a decision boundary that divides the feature space into regions, with each region corresponding to a class.
+
+For binary classification, a linear classifier can be represented as:
+
+$$h_w(x_j) = \begin{cases}
+1 & \text{if } \sum_{i=0}^{n} w_i x_{j,i} > 0 \\
+0 & \text{otherwise}
+\end{cases}$$
+
+Where:
+- $h_w(x_j)$ is the predicted class (1 or 0)
+- $w_i$ are the weights
+- $x_{j,i}$ are the feature values
+
+The decision boundary is the hyperplane where the function equals zero:
+
+$$\sum_{i=0}^{n} w_i x_{j,i} = 0$$
+
+{{DIAGRAM: lect02.pdf, page 73, 
+> Seismic data example showing linear separation between earthquakes and nuclear explosions
+
+In the 2D example from the lecture, the linear separator has the form:
+$$x_2 = 1.7x_1 - 4.9$$ or $$-4.9 + 1.7x_1 - x_2 = 0$$
+
+Points where the function evaluates to greater than 0 are classified as one class (e.g., explosions), while points where it evaluates to less than 0 are classified as the other class (e.g., earthquakes).
+
+Learning a linear classifier follows a similar process to linear regression:
+1. Start with arbitrary weights
+2. Use the decision rule on an example
+3. If classification is correct, don't update weights
+4. If classification is incorrect, update weights (commonly using stochastic gradient descent)
+
+Limitations of linear classifiers:
+- They can only learn linearly separable patterns
+- They perform poorly on data with complex decision boundaries
+- For problems like XOR, linear classifiers fail completely
+
+{{DIAGRAM: lect02.pdf, page 81, 
+
+> Examples showing linear separability and non-linear separability (XOR problem)
+
+## 4.2 Logistic Regression
+
+**Logistic regression** is a classification method that addresses a key limitation of basic linear classifiers: their binary output (0 or 1) doesn't provide information about classification confidence.
+
+Instead of using a hard threshold, logistic regression applies the **logistic function** (also called the sigmoid function) to the linear combination of inputs:
+
+$$h_w(x) = \frac{1}{1 + e^{-w \cdot x}}$$
+
+Where:
+- $w \cdot x$ is the dot product of the weight vector and feature vector
+- The output ranges between 0 and 1, representing the probability of class membership
+
+{{DIAGRAM: lect02.pdf, page 78, 
+> Graph showing the logistic function transforming linear classifier output into a probability
+
+The logistic function has several useful properties:
+- It maps any real-valued number into the range (0, 1)
+- It's nearly linear around 0 but flattens toward the ends
+- It's differentiable, making it suitable for optimisation methods like gradient descent
+
+The derivative of the logistic function is:
+$$g'(z) = g(z)(1 - g(z))$$
+
+When training a logistic regression model with gradient descent, the update rule becomes:
+$$w_i \leftarrow w_i + \alpha(y - h_w(x))h_w(x)(1 - h_w(x))x_i$$
+
+Where:
+- $\alpha$ is the learning rate
+- $(y - h_w(x))$ is the prediction error
+- $h_w(x)(1 - h_w(x))$ is the derivative of the logistic function
+- $x_i$ is the feature value
+
+Compared to linear classifiers, logistic regression:
+- Provides probabilistic outputs (confidence scores)
+- Has smoother convergence during training
+- Handles noisy data better
+
+## 4.3 Cross-Entropy Loss
+
+While linear regression uses squared error loss, logistic regression commonly uses **cross-entropy loss** (also called log loss), which is more appropriate for probabilistic classification.
+
+The cross-entropy loss for a single example is:
+$$L(\hat{y}, y) = -[y\log(\hat{y}) + (1-y)\log(1-\hat{y})]$$
+
+Where:
+- $y$ is the true label (0 or 1)
+- $\hat{y}$ is the predicted probability $h_w(x)$
+
+For a dataset with N examples, the total loss is:
+$$J(w) = -\frac{1}{N}\sum_{j=1}^{N}[y_j\log(\hat{y}_j) + (1-y_j)\log(1-\hat{y}_j)]$$
+
+Cross-entropy loss can be derived from the principle of maximum likelihood estimation:
+
+1. For binary classification, we want to maximise the probability of the correct label:
+   $$p(y|x) = \hat{y}^y(1-\hat{y})^{1-y}$$
+
+2. Taking the logarithm (for computational stability):
+   $$\log p(y|x) = y\log\hat{y} + (1-y)\log(1-\hat{y})$$
+
+3. Converting to a loss function by negating:
+   $$-\log p(y|x) = -[y\log\hat{y} + (1-y)\log(1-\hat{y})]$$
+
+Cross-entropy loss has several advantages for classification:
+- It heavily penalises confident but wrong predictions
+- It provides stronger gradients for learning when predictions are far off
+- It's the natural loss function for probabilistic classification
+
+When $y = 1$, the loss simplifies to $-\log(\hat{y})$, which approaches infinity as $\hat{y}$ approaches 0. Similarly, when $y = 0$, the loss simplifies to $-\log(1-\hat{y})$, which approaches infinity as $\hat{y}$ approaches 1. This creates strong gradients that help the model correct serious mistakes quickly.
+
+When training with gradient descent using cross-entropy loss, the update rules naturally incorporate the derivatives of both the loss function and the logistic function, which together guide the weights toward values that maximise the likelihood of the correct classifications.
+
 # 5. Ensemble Methods
 
 ## 5.1 Basic Ensemble Learning
@@ -436,6 +560,8 @@ The general boosting process works as follows:
 5. The final ensemble combines all classifiers, weighted by their performance on the training set
 
 ![image](https://github.com/user-attachments/assets/d9051116-9e20-4daa-aeaa-135fc3e62869)
+
+> Visual representation of boosting showing how decision boundaries evolve with each classifier
 
 **AdaBoost** (Adaptive Boosting) is one of the most popular boosting algorithms:
 1. Given a weak learner (performing slightly better than random guessing), AdaBoost can generate an ensemble that perfectly classifies the training set
