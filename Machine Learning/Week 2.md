@@ -429,7 +429,8 @@ The decision boundary is the hyperplane where the function equals zero:
 
 $$\sum_{i=0}^{n} w_i x_{j,i} = 0$$
 
-{{DIAGRAM: lect02.pdf, page 73, 
+![image](https://github.com/user-attachments/assets/25620d89-d635-4946-923b-f7d50493b4d5)
+
 > Seismic data example showing linear separation between earthquakes and nuclear explosions
 
 In the 2D example from the lecture, the linear separator has the form:
@@ -448,7 +449,7 @@ Limitations of linear classifiers:
 - They perform poorly on data with complex decision boundaries
 - For problems like XOR, linear classifiers fail completely
 
-{{DIAGRAM: lect02.pdf, page 81, 
+![image](https://github.com/user-attachments/assets/db0d90e5-7d89-4352-983d-9092eee5434a)
 
 > Examples showing linear separability and non-linear separability (XOR problem)
 
@@ -464,7 +465,8 @@ Where:
 - $w \cdot x$ is the dot product of the weight vector and feature vector
 - The output ranges between 0 and 1, representing the probability of class membership
 
-{{DIAGRAM: lect02.pdf, page 78, 
+![image](https://github.com/user-attachments/assets/6c2acbed-4293-42b6-b35c-14e83dddadf4)
+
 > Graph showing the logistic function transforming linear classifier output into a probability
 
 The logistic function has several useful properties:
