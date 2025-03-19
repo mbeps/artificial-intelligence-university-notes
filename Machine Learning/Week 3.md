@@ -144,6 +144,8 @@ Consider a dataset about playing tennis based on weather conditions:
 
 ![image](https://github.com/user-attachments/assets/1c2553c8-649a-45dd-801a-7497134bc06c)
 
+> Tennis dataset with attributes Outlook, Temperature, Humidity, Wind and Tennis class
+
 To classify an example $\langle \text{Outlook} = \text{Sun}, \text{Temp} = \text{Cool}, \text{Humidity} = \text{High}, \text{Wind} = \text{Strong} \rangle$, we compute:
 
 1. Prior probabilities:
@@ -278,6 +280,8 @@ Gaussian mixture models are useful because:
 
 ![image](https://github.com/user-attachments/assets/a4f5a7d0-071e-4d09-9cd1-582c714573a0)
 
+> A multivariate Gaussian mixture model showing multiple overlapping elliptical distributions
+
 ## **3.2 Parameter Estimation**
 
 The challenge with mixture models is estimating their parameters from observed data. For a Gaussian mixture model with $K$ components, we need to estimate:
@@ -379,6 +383,8 @@ The core idea of K-means is to identify K cluster centres such that the total di
 This algorithm minimizes the **within-cluster sum of squares (WCSS)** or the sum of squared Euclidean distances between points and their assigned cluster centres.
 
 ![image](https://github.com/user-attachments/assets/a1a1facc-e6b7-43ff-bf74-5affa8120dee)
+
+> Animation showing K-means clustering iterations
 
 **Example of K-means Clustering**:
 
