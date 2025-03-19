@@ -15,6 +15,8 @@ Kernel machines represent a powerful class of algorithms in machine learning tha
 
 ![image](https://github.com/user-attachments/assets/f48fd537-79a8-4ebe-914c-2c8f45f388f0)
 
+> Image showing SVM separating food items
+
 Kernel machines bridge the gap between simple linear models that are easy to train but limited in capability, and complex models like neural networks that can represent sophisticated functions but can be difficult to optimize.
 
 ### **1.2 Linear Classifiers Review**
@@ -32,6 +34,8 @@ Where:
 
 ![image](https://github.com/user-attachments/assets/5cfee292-3b32-4be3-a6bc-77c82beb5b1f)
 
+> Diagrams showing three possible linear classifiers
+
 For binary classification, the decision rule is typically:
 - If $\mathbf{w}^T\mathbf{x} + b > 0$, classify as positive class
 - If $\mathbf{w}^T\mathbf{x} + b < 0$, classify as negative class
@@ -48,6 +52,8 @@ Despite their simplicity and interpretability, linear classifiers suffer from fu
 **1. Limited decision boundaries**: Linear classifiers can only create linear decision boundaries (straight lines in 2D, planes in 3D, hyperplanes in higher dimensions).
 
 ![image](https://github.com/user-attachments/assets/65079311-50be-49df-925f-5f3417179e63)
+
+> Diagram showing data that cannot be separated by a linear boundary
 
 **2. Poor generalization**: A linear classifier that perfectly separates training data might be too close to some examples, making it sensitive to slight variations and leading to poor generalization.
 
@@ -78,6 +84,8 @@ The advantage of kernel machines over alternative approaches is that they provid
 
 ![image](https://github.com/user-attachments/assets/4e0863cd-9bbc-42c4-996e-23fedd7876d8)
 
+> Diagram showing the maximum margin between two classes
+
 The key principle of maximum margin classification:
 - Among all possible hyperplanes that separate the data, choose the one with the largest margin
 - This strategy aims to minimize **generalization loss** rather than just empirical loss
@@ -96,6 +104,8 @@ The **margin** is defined as the width of the area bounded by the closest points
 For a linear classifier with the form $y = \mathbf{w}^T\mathbf{x} + b$, changing the parameters $\mathbf{w}$ and $b$ changes the decision boundary.
 
 ![image](https://github.com/user-attachments/assets/629ac263-aeda-470c-bb06-ed32332ae335)
+
+> Diagram showing the weight vector w and decision boundary
 
 In SVMs, we define the decision function as:
 - $\mathbf{w}^T\mathbf{x} + b > 0$ for positive class (labeled as +1)
@@ -122,6 +132,8 @@ This creates two parallel hyperplanes:
 - $\mathbf{w}^T\mathbf{x} + b = -1$ for the negative class boundary
 
 ![image](https://github.com/user-attachments/assets/6f78dca5-ecd9-4cd3-aac2-2a5ec2e72133)
+
+> Diagram showing the two hyperplanes $w^Tx+b=1$ and $w^Tx+b=-1$
 
 The distance between these hyperplanes (the margin) is $\frac{2}{||\mathbf{w}||}$, where $||\mathbf{w}||$ is the Euclidean norm of $\mathbf{w}$.
 
@@ -184,6 +196,7 @@ After solving the optimization problem, many of the Lagrange multipliers $\alpha
 **Support vectors** are the training examples that lie exactly on the margin boundaries, where $y_i(\mathbf{w}^T\mathbf{x}_i + b) = 1$. They are called "support vectors" because they "support" or determine the position of the decision boundary.
 
 ![image](https://github.com/user-attachments/assets/102cf9c3-607a-45d7-9026-4a01acda7b62)
+> Diagram showing support vectors holding up the separator
 
 Key properties of support vectors:
 - They are the closest points to the decision boundary
@@ -241,9 +254,13 @@ Consider a simple example where data points can't be separated by a straight lin
 
 ![image](https://github.com/user-attachments/assets/c38e8070-cd7e-4e7a-921a-720bf9308367)
 
+> Diagram showing non-linearly separable data in 2D
+
 By transforming this 2D data into a 3D space, linear separation becomes possible:
 
 ![image](https://github.com/user-attachments/assets/910fc60d-70bf-4a74-ab48-dde596db06f4)
+
+> Diagram showing the same data now separable in 3D space
 
 For a simple 2D example, we might map each point $\mathbf{x} = (x_1, x_2)$ to a 3D space using:
 - $f_1 = x_1^2$
@@ -272,6 +289,8 @@ Properties of inner products related to similarity:
 - The inner product's magnitude increases with vector magnitudes
 
 ![image](https://github.com/user-attachments/assets/c60d4989-df1d-4075-a9f5-15b114cf7d3f)
+
+> Diagram showing dot product as a measure of similarity
 
 In the SVM dual formulation, the inner product $\mathbf{x}_i \cdot \mathbf{x}_j$ appears extensively. When we transform data points to a higher dimension, we would need to compute $\Phi(\mathbf{x}_i) \cdot \Phi(\mathbf{x}_j)$, which could be computationally expensive if the transformed space has many dimensions.
 
@@ -355,6 +374,8 @@ The feature spaces associated with kernels can be extremely high-dimensional or 
 In real-world scenarios, data is often noisy and cannot be perfectly separated by a hyperplane, even after mapping to a higher-dimensional space using kernels. **Soft margin classification** extends SVMs to handle non-separable data.
 
 ![image](https://github.com/user-attachments/assets/d3dc5bc0-eaf0-43f7-a727-85d54ccfa38f)
+
+> Showing a non-separable dataset
 
 **Motivation for soft margin classification:**
 - Perfect separation might be impossible due to noise or outliers
@@ -444,6 +465,8 @@ Consider a dataset with an outlier far from other points of its class. In a hard
 
 ![image](https://github.com/user-attachments/assets/455f45bc-d65e-433d-8148-e3d3f26e11da)
 
+> Diagram showing how soft margin classification handles outliers
+
 The key insight is that soft margin classification allows the SVM to ignore points that would otherwise lead to poor generalization, effectively focusing on the most informative examples while limiting the impact of noisy or outlier data points.
 
 In summary, soft margin classification extends the applicability of SVMs to real-world, noisy datasets by introducing flexibility in the constraints and controlling the trade-off between margin size and training errors through the regularisation parameter C.
@@ -489,6 +512,8 @@ Where:
 - $\epsilon$ is the insensitivity parameter
 
 ![image](https://github.com/user-attachments/assets/64957160-35ed-4b5f-bf36-489dbc7e0e3b)
+
+> Diagram showing the ε-insensitive tube fitted to data
 
 This loss function has a crucial property: it ignores errors smaller than $\epsilon$. This means:
 - Points within $\epsilon$ distance of the regression line contribute no loss
@@ -615,6 +640,8 @@ The most common non-parametric methods include:
 
 ![image](https://github.com/user-attachments/assets/59dda827-20cd-4485-a56b-6d7a74f9ce72)
 
+> Diagram showing k-NN classification
+
 2. **Distance metrics** commonly used in non-parametric methods:
    - **Minkowski distance**:
      $$L_p(\mathbf{x}_j, \mathbf{x}_q) = \left(\sum_i |x_{ji} - x_{qi}|^p\right)^{1/p}$$
@@ -637,6 +664,7 @@ The most common non-parametric methods include:
 
 ![image](https://github.com/user-attachments/assets/86e75a6e-2bc8-4e40-b88d-97beac504a8f)
 
+> Diagrams showing piecewise linear and k-NN regression
 
 Each of these methods has strengths and weaknesses:
 - Piecewise linear regression works well for non-noisy data but poorly for noisy data
@@ -652,6 +680,8 @@ The choice of k is typically determined through cross-validation, balancing the 
 **Locally Weighted Regression (LWR)** addresses the discontinuity issues of k-NN methods by applying weights to nearby points based on their distance, with closer points having more influence.
 
 ![image](https://github.com/user-attachments/assets/e4d1c59e-a9bc-461e-b2f4-661712292131)
+
+> Diagram showing locally weighted regression
 
 The key idea is to give a continuous weight to each training example based on its distance from the query point, rather than using a fixed cutoff as in k-NN methods.
 
@@ -678,6 +708,8 @@ Where:
 - $k$ is the kernel width (selected via cross-validation)
 
 ![image](https://github.com/user-attachments/assets/50b1a061-987b-494e-ab1a-4a46a2502845)
+
+> Diagram showing different kernel widths
 
 Key advantages of LWR:
 - It prevents discontinuities by smoothly transitioning between points
