@@ -1,8 +1,6 @@
-# **Probabilistic Models in Machine Learning**
+# **1. Fundamentals of Probability**
 
-## **1. Fundamentals of Probability**
-
-### **1.1 Basic Concepts**
+## **1.1 Basic Concepts**
 
 In machine learning, we often approach problems through the lens of probability. Probabilistic methods allow us to express uncertainty about outcomes rather than making hard yes/no distinctions.
 
@@ -19,7 +17,7 @@ However, these approaches also have disadvantages:
 - Need for initial probability estimates (which may be unknown)
 - Potentially high computational cost
 
-### **1.2 Bayes' Theorem**
+## **1.2 Bayes' Theorem**
 
 **Bayes' theorem** is a fundamental concept in probabilistic machine learning that describes the probability of an event based on prior knowledge of conditions related to the event.
 
@@ -60,7 +58,7 @@ $$P(h|D) = \frac{0.5 \times 0.294}{0.5 \times 0.294 + 0.05 \times (1 - 0.294)} =
 
 This shows how new evidence updates our beliefs systematically through Bayes' theorem.
 
-### **1.3 Prior and Posterior Probabilities**
+## **1.3 Prior and Posterior Probabilities**
 
 When applying Bayesian learning to machine learning problems, we work with several key probability concepts:
 
